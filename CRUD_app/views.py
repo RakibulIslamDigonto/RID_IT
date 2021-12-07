@@ -16,7 +16,6 @@ def home(request):
 def edit_user(request, id):
     if request.method == 'POST':
         single_bloger = get_object_or_404(NewUser, id=id)
-        #single_bloger = NewUser.objects.get(id=id)
         frm = EditForm(request.POST, instance=single_bloger)
         if frm.is_valid():
             frm.save()
