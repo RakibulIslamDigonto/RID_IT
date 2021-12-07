@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-sm-7">
+    <h3 class='text-center alert alert-info'>All User Here</h3>
+    {% if all_blogers %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Image</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for bloger in all_blogers %}
+                <tr>
+                    <th scope="row">{{bloger.id}}</th>
+                    <td>{{bloger.full_name}}</td>
+                    <td>{{bloger.user.email}}</td>
+                    <td><img class='rounded' style='width:50px; height:50px;' src='{{ bloger.image_url }}'></td>
+                    <td>
+                        <a href="{% url 'CRUD_app:editUser' id=bloger.id %}" class= 'btn btn-warning btn-sm'>Edit</a>
+
+                        <a href="{% url 'CRUD_app:deleteUser' id=bloger.id %}" class= 'btn btn-danger btn-sm'>Delete</a>
+                        
+                    </td>
+                </tr>
+                {% endfor %}
+            
+            </tbody>
+        </table>
+    {% endif %}
+        
+</div>
+
+{% endblock content %}
+

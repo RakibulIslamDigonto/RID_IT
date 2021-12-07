@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+#{% load crispy_forms_tags %}
+{% block content %}
+
+
+<form action="" method='POST' enctype='multipart/form-data'>
+    {% csrf_token %}
+    <div class="mb-3">
+        {{form.full_name}}
+    </div>
+    <div class="mb-3">
+        {{form.user_name}}
+    </div>
+    <div class="mb-3">
+        {{form.image}}
+    </div>
+    <div class="mb-3">
+        {{form.email}}
+    </div>
+    <div class="mb-3">
+        {{form.password1}}
+    </div>
+
+    <div class="mb-3">
+        {{form.password2}}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+{% endblock content %}
+
