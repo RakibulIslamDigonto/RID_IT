@@ -27,11 +27,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #apps
+    # storage
+    'cloudinary',
+    'cloudinary_storage',
+    # apps
     'CRUD_app',
     "crispy_forms",
     "crispy_bootstrap5",
-    
+
 ]
 
 MIDDLEWARE = [
@@ -120,13 +123,22 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+
+# CLOUDINARY_STORAGE
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'rid-cede-studio',
+    'API_KEY': '674135458627476',
+    'API_SECRET': 'nMJM4U0HQVJ9ZpUI7p2Z9lReR6g'
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-#crispy form
+# crispy form
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
