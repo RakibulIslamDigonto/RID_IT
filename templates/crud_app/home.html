@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title_block %} Home Page {% endblock %}
 {% block content %}
 
 <div class="col-sm-7">
@@ -21,12 +22,19 @@
                     <td>{{bloger.full_name}}</td>
                     <td>{{bloger.user.email}}</td>
                     <td><img class='rounded' style='width:50px; height:50px;' src='{{ bloger.image_url }}'></td>
+                    {% if request.user.is_authenticated %}
                     <td>
                         <a href="{% url 'CRUD_app:editUser' id=bloger.id %}" class= 'btn btn-warning btn-sm'>Edit</a>
 
                         <a href="{% url 'CRUD_app:deleteUser' id=bloger.id %}" class= 'btn btn-danger btn-sm'>Delete</a>
                         
                     </td>
+                    {% else %}
+                    <td>
+                        Please Login!
+                    </td>
+                    {% endif %}
+                    
                 </tr>
                 {% endfor %}
             
