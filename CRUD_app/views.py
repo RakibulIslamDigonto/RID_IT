@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
 from CRUD_app.models import NewUser
-from CRUD_app.forms import RegisterForm, LoginForm
+from CRUD_app.forms import RegisterForm, LoginForm, EditForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
@@ -15,13 +15,17 @@ def home(request):
 
 def edit_user(request, id):
     if request.method == 'POST':
-        single_bloger = NewUser.objects.get(id=id)
-        frm = RegisterForm(request.POST, instance=single_bloger)
+        single_bloger = get_object_or_404(NewUser, id=id)
+        #single_bloger = NewUser.objects.get(id=id)
+        frm = EditForm(request.POST, instance=single_bloger)
         if frm.is_valid():
             frm.save()
+            messages.success(
+                request, "Account for {0} is created Successfully".format(single_bloger))
+            return redirect('CRUD_app:home')
     else:
-        single_bloger = NewUser.objects.get(id=id)
-        frm = RegisterForm(request.POST, instance=single_bloger)
+        single_bloger = get_object_or_404(NewUser, id=id)
+        frm = EditForm(instance=single_bloger)
     return render(request, 'crud_app/editprofile.html', {'single_bloger': single_bloger, 'form': frm})
 
 

@@ -38,3 +38,14 @@ class LoginForm(forms.Form):
 
     password = forms.CharField(label='Password', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
+
+
+class EditForm(forms.ModelForm):
+    full_name = forms.CharField(label='Full Name', required=True, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Enter your Name'}))
+
+    image = forms.ImageField(label='image', required=False)
+
+    class Meta:
+        model = NewUser()
+        fields = ['full_name', 'image']
